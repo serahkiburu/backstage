@@ -1,5 +1,15 @@
 # @backstage/backend-common
 
+## 0.9.6
+
+### Patch Changes
+
+- 8f969d5a56: Correct error message typo
+- Updated dependencies
+  - @backstage/config-loader@0.6.10
+  - @backstage/cli-common@0.1.4
+  - @backstage/integration@0.6.7
+
 ## 0.9.5
 
 ### Patch Changes
