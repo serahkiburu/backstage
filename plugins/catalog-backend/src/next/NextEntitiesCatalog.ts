@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-import { Filter, Filters } from '@backstage/backend-common';
+import { Filters } from '@backstage/backend-common';
 import { CatalogPermission } from '@backstage/catalog-model';
 import { InputError } from '@backstage/errors';
 import {
   AuthorizeResult,
+  ConditionalAuthorizeResult,
   PermissionClient,
 } from '@backstage/permission-common';
 import { Knex } from 'knex';
@@ -154,8 +155,9 @@ export class NextEntitiesCatalog implements EntitiesCatalog {
     }
 
     if (authorizationFilters.result === AuthorizeResult.MAYBE) {
+      const filters = authorizationFilters as ConditionalAuthorizeResult<any>;
       entitiesQuery = entitiesQuery.andWhere(
-        parseFiltersToDbQuery(authorizationFilters.conditions, db),
+        parseFiltersToDbQuery(filters.conditions, db),
       );
     }
 
